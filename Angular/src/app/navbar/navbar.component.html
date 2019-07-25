@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+  <a class="navbar-brand" href="#">Todo</a>
+
+  <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+    <li class="nav-item active">
+      <a class="nav-link" [routerLink]="['']" routerLinkActive="router-link-active" >Home <span class="sr-only">(current)</span></a>
+    </li>
+    <li class="nav-item" *ngIf="auth.isLoggedIn()">
+            <a class="nav-link" [routerLink]="['/task']"
+              routerLinkActive="router-link-active">Tasks</a>
+          </li>
+    <li class="nav-item" *ngIf="!auth.isLoggedIn()">
+      <a class="nav-link" [routerLink]="['/login']" routerLinkActive="router-link-active">Login</a>
+    </li>
+    <li class="nav-item" *ngIf="!auth.isLoggedIn()">
+      <a class="nav-link" [routerLink]="['/register']" routerLinkActive="router-link-active">Register</a>
+    </li>
+    <li class="nav-item" *ngIf="auth.isLoggedIn()">
+      <a class="nav-link" [routerLink]="['/profile']"
+        routerLinkActive="router-link-active">{{auth.getUserDetails()?.first_name}}</a>
+    </li>
+    <li class="nav-item" *ngIf="auth.isLoggedIn()">
+      <a class="nav-link" (click)="auth.logout()">Logout</a>
+    </li>
+
+  </ul>
+
+
+</nav>

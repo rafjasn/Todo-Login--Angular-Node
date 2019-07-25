@@ -1,0 +1,47 @@
+<div class="card">
+
+    <div class="card-body">
+      <form #taskForm="ngForm" (ngSubmit)="onSubmit(taskForm)">
+  
+        <input type="hidden" name="id" #id="ngModel" [(ngModel)]="taskService.selectedTask.id">
+        <div class="form-group">
+          <label for=""></label>
+          <input type="text" class="form-control" name="task" #task="ngModel" [(ngModel)]="taskService.selectedTask.task"
+            placeholder="Enter task name">
+          <label>Task: </label>
+        </div>
+  
+  
+        <button class="btn btn-success" type="submit">Submit</button>
+        <button class="btn btn-danger" type="reset">Reset</button>
+  
+      </form>
+  
+    </div>
+  </div>
+
+
+
+<table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Task</th>
+                <th>Created Date</th>
+                <th>Edit/Delete</th>
+           
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let task of taskService.tasks">
+                <td>{{task.task}} </td>
+                <td>{{task.created_at | date:'medium'}}</td>
+                <td>
+                    <a class="btn btn-primary" (click)="onEdit(task)">Edit</a>
+                    <a class="btn btn-danger" (click)="onDelete(task.id)">Delete</a>
+                </td>
+            </tr>
+    
+        </tbody>
+    </table>
+
+
